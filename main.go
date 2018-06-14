@@ -20,13 +20,11 @@ type mobileInfo struct {
 	channel string
 }
 
-var chanGet = make(chan mobileInfo, 20)
-var chanSet = make(chan int, 20)
+var chanGet = make(chan mobileInfo, 500)
+var chanSet = make(chan int, 500)
 var wg sync.WaitGroup
 
 func main() {
-	fmt.Println(">>>>>>>>>>>>>>>>>>>")
-	return
 	var mobile = mobileInfo{}
 	xlsx, err := excelize.OpenFile("./mobile.xlsx")
 	if err != nil {
@@ -58,6 +56,8 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println("按任意键退出")
+	fmt.Scanf("1")
 }
 
 func get(mobile mobileInfo) {
